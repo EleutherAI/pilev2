@@ -27,9 +27,9 @@ kenlm_model = KenlmModel.from_pretrained(
 check_perplexity_p = partial(check_perplexity, model=kenlm_model)
 check_perplexity_p.__name__ = "check_perplexity"
 
-fasttext_model = FastTextLanguageDetector.from_pretrained()
-check_language_p = partial(check_language, model=fasttext_model)
-check_language_p.__name__ = "check_language"
+# fasttext_model = FastTextLanguageDetector.from_pretrained()
+# check_language_p = partial(check_language, model=fasttext_model)
+# check_language_p.__name__ = "check_language"
 
 # Parse the arguments
 parser = argparse.ArgumentParser()
@@ -60,14 +60,14 @@ universal_filters = [
     check_char_repetition,
     check_flagged_words,
     check_perplexity_p,
-    check_language_p,
+    # check_language_p,
     check_word_number,
 ]
 datasources = [
     {
         "dataset": load_from_disk(data_dir / k).select(range(10_000)),
         "columns": ["text"],
-        "filters": universal_filters,
+        "filters": [], # universal_filters,
         "cleaners": [],
     }
     for k in dataset_cats
