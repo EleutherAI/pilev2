@@ -4,3 +4,4 @@ scrubadub
 sentencepiece
 git+https://github.com/CarperAI/squeakily.git
 https://github.com/kpu/kenlm/archive/master.zip
+zstandard
