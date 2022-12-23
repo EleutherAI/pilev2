@@ -1,0 +1,6 @@
+{
+    "group_1": ["arXiv", "PubMed Central", "Project Gutenberg", "FreeLaw", "Ubuntu IRC", "Wikipedia (en)", "EuroParl", "USPTO", "Pile of Law", "Other Wiki", "S2ORC"],
+    "group_2": ["Reddit Dialog 05-19", "Code Reddit Dialog 05-19", "Reddit Dialog 20", "Code Reddit Dialog 20", "Reddit Dialog 21", "Code Reddit Dialog 21","Reddit Dialog 22", "Code Reddit Dialog 22","Reddit Posts 05-22", "Code Reddit Posts 05-22", "Apache", "StackExchange", "Usenet", "Discourse", "Github Issues", "Opensubtitles", "DevDocs"],
+    "group_3": ["DMMath", "Programming Competition", "AI4Code", "Github Diffs", "GitHub Code", "AMPS", "TED2020", "GNOME", "SODA"],
+    "common_group": ["DKPRO C4"]
+}
