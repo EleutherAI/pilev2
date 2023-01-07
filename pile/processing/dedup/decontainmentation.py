@@ -259,19 +259,6 @@ benchmarks = [
 # MATH=???
 # MMMLU=???
 # SuperGLUE=???
-# Benchmarks to clean
-# benchmar`ks = [
-#     {
-#         "name": "openai_humaneval",
-#         "splits": ["test"],
-#         "columns": ["prompt", "canonical_solution", "test"],
-#     },
-#     {
-#         "name": "lambada",
-#         "splits": ["test"],
-#         "columns": ["text"],
-#     },
-# ]`
 
 cleaner = BenchmarkCleaner(benchmarks, threshold=0.1, num_perm=128)
 

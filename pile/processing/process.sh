@@ -8,3 +8,7 @@
 python test_datasets.py \
     --data_dir /fsx/shared/pilev2_local_deduped/ \
     --output_dir $(pwd)/test_datasets \
+
+python processing_compression.py \
+    --data_dir /fsx/shared/pilev2_local_deduped/ \
+    --output_dir $(pwd)/test_datasets
