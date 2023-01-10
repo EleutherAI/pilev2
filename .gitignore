@@ -1,3 +1,5 @@
+pile-v2-eda/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +129,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
+test_datasets/
+=======
+>>>>>>> e259a5cda662d5482a6d9115faae09ec18299969
