@@ -7,6 +7,7 @@ import argparse
 import time
 import pathlib
 import random
+import json
 
 logging.basicConfig(
     level = logging.INFO,
@@ -16,19 +17,26 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def subset_dataset_fn(dataset,percentage:float=10.0):
-    
-    percentage_total = int(len(dataset)*percentage/100)
-    idxs = random.sample(range(len(dataset)),percentage_total)
-    
-    total_len = len(dataset)
-    dataset = dataset.select(idxs)
-    #idxs to dataset column
-    print(f"Slicing 10% which is {percentage_total} |  {len(dataset)} out of {total_len}")
-    logger.info(f"Slicing 10% which is {percentage_total} | {len(dataset)} out of {total_len}")
-    dataset.add_column("subset_idx",idxs)
-    print(dataset)
-    logger.info(dataset)
-    return dataset
+    if len(dataset) > 10:
+        percentage_total = int(len(dataset)*percentage/100)
+        idxs = random.sample(range(len(dataset)),percentage_total)
+        
+        total_len = len(dataset)
+        dataset = dataset.select(idxs)
+        #idxs to dataset column
+        print(f"Slicing 10% which is {percentage_total} |  {len(dataset)} out of {total_len}")
+        logger.info(f"Slicing 10% which is {percentage_total} | {len(dataset)} out of {total_len}")
+        #dataset.add_column("subset_idx",idxs) This takes painfully too long So making a quick replacement.
+        print(dataset)
+        logger.info(dataset)
+        return dataset,idxs
+    else:
+        return dataset,[]
+
+
+def write_to_json(path,list_of_inds:list):
+    with open(os.path.join(path,"subset_indices.json"),"w") as f:
+        json.dump({"idx" : list_of_inds},f)
 
 
 if __name__ == "__main__":
@@ -51,13 +59,14 @@ if __name__ == "__main__":
                 dataset = load_from_disk(path_sub_dir)
                 logger.info(f"Loaded dataset from {path_sub_dir}")
                 print(f"Loaded dataset from {path_sub_dir}")
-                subset_dataset = subset_dataset_fn(dataset,percentage=10.0)
+                subset_dataset,subset_idx = subset_dataset_fn(dataset,percentage=10.0)
                 logger.info(f"Subsetting dataset to {args.percentage}%")
 
                 logger.info("Saving dataset")
                 output_dir = pathlib.Path(os.path.join(args.output_dir, sub_dir))
                 output_dir.mkdir(parents=True, exist_ok=True)
                 subset_dataset.save_to_disk(args.output_dir)
+                write_to_json(output_dir,subset_idx)
                 logger.info(f"Saved dataset at {args.output_dir}")
             else:
                 logger.info(f"The subdir is non_local_dedup")
@@ -77,6 +86,7 @@ if __name__ == "__main__":
                     output_dir = pathlib.Path(os.path.join(args.output_dir,sub_dir ,non_local_sub_dir))
                     output_dir.mkdir(parents=True, exist_ok=True)
                     subset_dataset.save_to_disk(args.output_dir)
+                    write_to_json(output_dir,subset_idx)
                     logger.info(f"Saved dataset at {args.output_dir}")
         except PermissionError:
             logger.info(f"Permission Error at {sub_dir}")
