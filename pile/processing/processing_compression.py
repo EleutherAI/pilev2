@@ -61,7 +61,11 @@ dataset_cats = [x.name for x in data_dir.iterdir() if x.is_dir() and x.name not 
 
 tmp_ds = [
     {
+<<<<<<< HEAD
         "dataset": load_from_disk(data_dir / k),
+=======
+        "dataset": load_from_disk(data_dir / k).select(range(1_000)),
+>>>>>>> 6f1ad901d74a8d295e1cdfd7f70fe0cd9386d04b
         "name": k,
         "columns": ["text"],
         "filters": [check_compression_ratio],
@@ -72,7 +76,11 @@ tmp_ds = [
 datasources = []
 for idx, ds in enumerate(tmp_ds):
     pipeline = Pipeline([ds])
+<<<<<<< HEAD
     pipeline.run(dry_run=True, num_proc=64)
+=======
+    pipeline.run(dry_run=True)
+>>>>>>> 6f1ad901d74a8d295e1cdfd7f70fe0cd9386d04b
     compression_ratios = pipeline.datasources[0]["dataset"]["check_compression_ratio_criteria"]
     min_compression_ratio = np.quantile(compression_ratios, args.min_percentile)
     check_compression_ratio_p = partial(check_compression_ratio, compression_threshold=min_compression_ratio)
@@ -84,10 +92,18 @@ for idx, ds in enumerate(tmp_ds):
 pprint(datasources)
 
 pipeline = Pipeline(datasources)
+<<<<<<< HEAD
 pipeline.run(num_proc=64)
+=======
+pipeline.run()
+>>>>>>> 6f1ad901d74a8d295e1cdfd7f70fe0cd9386d04b
 
 pprint(pipeline.datasources)
 
 # Save the resulting datasets
 for name, ds in zip(dataset_cats, pipeline.datasources):
+<<<<<<< HEAD
     ds["dataset"].save_to_disk(output_dir / name)
+=======
+    ds["dataset"].save_to_disk(output_dir / name)
+>>>>>>> 6f1ad901d74a8d295e1cdfd7f70fe0cd9386d04b
