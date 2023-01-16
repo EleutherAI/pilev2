@@ -1,6 +1,22 @@
 from datasets import load_dataset
 from hf_clean_benchmarks.core import BenchmarkCleaner
 
+# Parse the arguments
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--data_dir",
+    type=str,
+    required=True,
+    help="The directory where the data is stored.",
+)
+parser.add_argument(
+    "--output_dir",
+    type=str,
+    required=True,
+    help="The directory where the output should be stored.",
+)
+args = parser.parse_args()
+
 # Benchmarks to clean
 benchmarks = [
     {
@@ -256,14 +272,21 @@ benchmarks = [
     },
 ]
 
+benchmark_names = ["bigscience/P3", "math", "lambada", "codeparrot/apps", "wino_bias"]
+
+
+
 # MATH=???
 # MMMLU=???
 # SuperGLUE=???
 
-cleaner = BenchmarkCleaner(benchmarks, threshold=0.1, num_perm=128)
+cleaner = BenchmarkCleaner(benchmark_names, threshold=0.1, num_perm=128)
 
 # load your dataset
 dataset = load_dataset("bigcode/the-stack-smol", data_dir="data/python", split="train")
 
 # clean the dataset
 cleaned_dataset = cleaner.clean(dataset, column="content")
+
+# save the cleaned dataset
+cleaned_dataset.save_to_disk("data/python_cleaned")
