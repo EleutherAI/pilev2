@@ -1,6 +1,7 @@
 {
     "group_1": ["arXiv_ver2", "PubMed_ver2", "Gutenberg_ver2", "FreeLaw_Options_ver2", "UbuntuIRC_ver2", "Enwiki_ver2", "EuroParliamentProceedings_ver2", "USPTO_ver2", "PileOfLaw_ver2", "OtherWiki_ver2", "S2ORC_ver2"],
     "group_2": [
+        "/fsx/shared/pilev2/deduped_2_2/deduped_2_2/group_2_2",
         "PileV2Reddit2019_ver2/PileV2Reddit2019_0",
         "PileV2Reddit2019_ver2/PileV2Reddit2019_1",
         "PileV2Reddit2019_ver2/PileV2Reddit2019_2",
@@ -25,11 +26,6 @@
         "PileV2Reddit2020_ver2/PileV2Reddit2020_0",
         "PileV2Reddit2020_ver2/PileV2Reddit2020_1",
         "CodePileReddit2020_ver2",
-        "PileV2Reddit2021_ver2/PileV2Reddit2021_0",
-        "PileV2Reddit2021_ver2/PileV2Reddit2021_1",
-        "PileV2Reddit2021_ver2/PileV2Reddit2021_2",
-        "PileV2Reddit2021_ver2/PileV2Reddit2021_3",
-        "PileV2Reddit2021_ver2/PileV2Reddit2021_4",
         "CodePileReddit2021_ver2",
         "PileV2Reddit2022_ver2/PileV2Reddit2022_0",
         "PileV2Reddit2022_ver2/PileV2Reddit2022_1",
@@ -38,5 +34,6 @@
         "PileV2Reddit2022_ver2/PileV2Reddit2022_4",
         "CodePileReddit2022_ver2","PileV2Posts_ver2", "CodePilePosts_ver2", "ASFPublicMail_ver2", "StackExchange_ver4", "USENET_ver2", "Discourse_ver2", "GithubIssues_ver2", "Opensubtitles", "DevDocs"],
     "non_dedup": ["DMMath", "CPDataset", "AI4Code", "GithubDiff_ver2", "GitHub Code", "AMPS", "TED2020", "GNOME", "SODA"],
-    "common_group": ["DKPRO C4"]
+    "common_group": ["dedup_script/C4_DKPRO_0-8_dedup"]
+    
 }
